@@ -1,0 +1,43 @@
+{% load wagtailcore_tags %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <title>{{ page.title }}</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>{{ page.title }}</h1>
+            {% for section in page.body %}
+                {% if section.block_type == 'single_column' %}
+                    {% include_block section %}
+                {% elif section.block_type == 'two_column' %}
+                    <div class="row row-cols-2">
+                        <div class="col-lg">
+                            {% include_block section.value.left %}
+                        </div>
+                        <div class="col-sm">
+                            {% include_block section.value.right %}
+                        </div>
+                    </div>
+                {% elif section.block_type == 'three_column' %}
+                    <div class="row row-cols-3">
+                        <div class="col-sm">
+                            {% include_block section.value.left %}
+                        </div>
+                        <div class="col-sm">
+                            {% include_block section.value.middle %}
+                        </div>
+                        <div class="col-sm">
+                            {% include_block section.value.right %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -15,6 +15,7 @@ class HeadingBlock(StructBlock):
 
     class Meta:
         icon = 'title'
+        template = 'home/blocks/heading.html'
 
 
 class ImageWithCaptionBlock(StructBlock):
@@ -39,6 +40,7 @@ class CallToActionBlock(StructBlock):
 
     class Meta:
         icon = 'link'
+        template = 'home/blocks/call_to_action.html'
 
 
 class TestimonialBlock(StructBlock):
@@ -48,6 +50,7 @@ class TestimonialBlock(StructBlock):
 
     class Meta:
         icon = 'openquote'
+        template = 'home/blocks/testimonial.html'
 
 
 class ContentStreamBlock(StreamBlock):
@@ -57,7 +60,7 @@ class ContentStreamBlock(StreamBlock):
     carousel = ListBlock(StructBlock([
         ('image', ImageChooserBlock()),
         ('caption', RichTextBlock()),
-    ]), icon='arrow-right')
+    ]), icon='arrow-right', template='home/blocks/carousel.html')
     call_to_action = CallToActionBlock()
     video = EmbedBlock()
     testimonial = TestimonialBlock()
